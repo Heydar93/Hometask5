@@ -1,0 +1,53 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TaskManagement.Database;
+using TaskManagement.Database.Models;
+
+namespace TaskManagement.Admin.Commands
+{
+    public class RemoveUser
+    {
+        public static void Handle()
+        {
+            while (true)
+            {
+                try
+                {
+                    Console.Write("Enter an email");
+
+                    string email = Console.ReadLine()!;
+
+                    foreach (User user in DataContext.Users)
+                    {
+                        if (user.Email == email)
+                        {
+                            if (user.IsAdmin)
+                            {
+                                Console.WriteLine($"{user.Name} already an admin");
+                                return;
+                            }
+                            else
+                            {
+                                Console.WriteLine($"{user.Name} removed");
+                                DataContext.Users.Remove(user);
+                                return;
+                            }
+                        }
+
+                    }
+
+                    Console.WriteLine("Email not found");
+                }
+                catch
+                {
+                    Console.WriteLine("Invalid input pls try again");
+                }
+            }
+
+        }
+
+    }
+}
