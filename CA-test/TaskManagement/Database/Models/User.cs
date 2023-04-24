@@ -14,6 +14,8 @@
         public  bool IsAdmin { get; set; }
         public  bool IsBanned { get; set; }
         public Message AssignedTo { get; set; }
+        public DateTime RegistrationDate { get; set; }
+
 
         public User(string name, string lastName, string password, string email, bool isAdmin = false, bool isBanned = false)
         {
@@ -25,13 +27,15 @@
             IsAdmin = isAdmin;
             IsBanned = isBanned;
             AssignedTo = AssignedTo;
+            RegistrationDate = DateTime.Now;
+
         }
 
-  
+
 
         public string GetShortInfo()
         {
-            return $"Id : {Id}, Full name : {Name} {LastName}, Email : {Email}, Is admin : {GetIsAdminInfo()}";
+            return $"Id: {Id}, Full name: {Name} {LastName}, Email: {Email}, Is admin: {GetIsAdminInfo()}, Registration date: {RegistrationDate.ToString("dd/MM/yyyy")}";
         }
 
         public string GetIsAdminInfo()

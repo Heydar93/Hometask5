@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaskManagement.Admin.Commands;
 using TaskManagement.Database;
+using TaskManagement.Shared;
 
 namespace TaskManagement.Admin
 {
@@ -12,6 +13,7 @@ namespace TaskManagement.Admin
     {
         public static void Introduction()
         {
+            UpdateSettingsForAdmin updateSettingsForAdmin = new UpdateSettingsForAdmin();
             Console.WriteLine("Hello dear admin");
 
             Console.WriteLine("Aviable commands:");
@@ -41,7 +43,7 @@ namespace TaskManagement.Admin
                         RemoveUser.Handle();
                         break;
                     case "/update-settings":
-                       UpdateSettings.Handle();
+                        updateSettingsForAdmin.Handle();
                         break;
                     case "/promote-to-admin":
                         PromoteToAdmin.Handle();

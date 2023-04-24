@@ -14,6 +14,7 @@ namespace TaskManagement.Client
         public static void Introduction(User user)
         {
             Console.WriteLine($"Hello! : {user.Email} {user.Password}");
+            UpdateSettingsForUser updateSettingsForUser = new UpdateSettingsForUser();
 
             while (true)
             {
@@ -22,7 +23,7 @@ namespace TaskManagement.Client
                 switch (command)
                 {
                     case "/update-user":
-                        UpdateUser.Handle();
+                        updateSettingsForUser.Handle();
                         return;
                     case "/close-account":
                         CloseAccount.Handle();

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using TaskManagement.Database;
 using TaskManagement.Database.Models;
 
-namespace TaskManagement.Admin.Commands
+namespace TaskManagement.Shared
 {
     public class UpdateSettings
     {
 
-        public static void Handle()
+        public virtual void Handle()
         {
             while (true)
             {

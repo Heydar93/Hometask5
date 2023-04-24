@@ -16,7 +16,7 @@ namespace TaskManagement.Admin.Commands
             {
                 try
                 {
-                    Console.Write("Enter  an id:");
+                    Console.Write("Enter an id:");
 
                     int id = int.Parse(Console.ReadLine()!);
 
@@ -31,7 +31,7 @@ namespace TaskManagement.Admin.Commands
 
                     Console.WriteLine("Email not found");
                 }
-                catch 
+                catch
                 {
                     Console.WriteLine("Invalid input pls try again");
                 }

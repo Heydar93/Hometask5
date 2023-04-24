@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TaskManagement.Database;
 using TaskManagement.Database.Models;
@@ -89,67 +90,47 @@ namespace TaskManagement.Common
 
         public string GetAndValidateEmail()
         {
-            char AT_SIGN = '@';
-
             while (true)
             {
+                Console.WriteLine("Please enter your email:");
+                string email = Console.ReadLine();
 
-                Console.WriteLine("Pls enter email : ");
-                string email = Console.ReadLine()!;
-                //Way 1
-                //if (_utility.Contains(email, AT_SIGN) && !IsEmailExists(users, email))
-                //    return email;
-
-                //Way2
-                //bool isValidFormat = false;
-                //bool isUnique = false;
-
-                //if (_utility.Contains(email, AT_SIGN))
-                //    isValidFormat = true;
-                //else
-                //{
-                //    isValidFormat = false;
-                //    Console.WriteLine("Ensure that your email contains @ characheter");
-                //}
-
-                //if (!IsEmailExists(users, email))
-                //    isUnique = true;
-                //else
-                //{
-                //    isUnique = false;
-                //    Console.WriteLine("Your email is already used in system, pls try another email");
-                //}
-
-                //if (isValidFormat && isUnique)
-                //    return email;
-
-                //Way 3
-                if (_utility.Contains(email, AT_SIGN))
+                if (IsValidEmail(email))
                 {
-                    if (!IsEmailExists(email))
-                        return email;
+                    // check if email is already in use in the system
+                    bool isEmailInUse = CheckIfEmailIsInUse(email);
+                    if (isEmailInUse)
+                    {
+                        Console.WriteLine("This email is already in use. Please try another email.");
+                    }
                     else
-                        Console.WriteLine("Your email is already used in system, pls try another email");
+                    {
+                        return email;
+                    }
                 }
                 else
-                    Console.WriteLine("Ensure that your email contains @ characheter");
-
-            }
-        }
-        private bool IsEmailExists(string email)
-        {
-            foreach (User user in DataContext.Users)
-            {
-                if (user.Email == email)
                 {
-                    return true;
+                    Console.WriteLine("Invalid email format. Please enter a valid email.");
                 }
             }
+        }
 
+        static bool IsValidEmail(string email)
+        {
+            bool isValid = Regex.IsMatch(email, @"^[a-zA-Z0-9]{10,30}@code\.edu\.az$");
+            if (isValid)
+            {
+                return true;
+            }
             return false;
         }
 
+        static bool CheckIfEmailIsInUse(string email)
+        {
+            return false;
+        }
         #endregion
+
 
         #region Common
 
@@ -174,10 +155,17 @@ namespace TaskManagement.Common
                     return false;
                 }
             }
-
             return true;
-        }
 
-        #endregion
+        }
     }
+
+    
 }
+
+
+
+
+
+#endregion
+

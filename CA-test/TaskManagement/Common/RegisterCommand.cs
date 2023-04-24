@@ -18,6 +18,7 @@ namespace TaskManagement.Common
 
             User human = new User(firstName, lastName, password, email);
 
+            Console.WriteLine($"Successfully registered {human.Name} {human.LastName} ({human.Email}) on {human.RegistrationDate}");
             DataContext.Users.Add(human);
 
         }

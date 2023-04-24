@@ -3,15 +3,13 @@ using TaskManagement.Database;
 
 namespace TaskManagement
 {
-    //Encapsulaiton
-
     public class Program
     {
         static void Main(string[] args)
         {
             while (true)
             {
-                Console.WriteLine("Aviable commands:");
+                Console.WriteLine("Available commands:");
                 Console.WriteLine("/register");
                 Console.WriteLine("/login");
                 Console.WriteLine("/exit");
